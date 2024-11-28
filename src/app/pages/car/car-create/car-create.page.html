@@ -62,13 +62,23 @@
 						}
 
 						<ion-item>
-							<ion-label position="stacked">Photo</ion-label>
+							<ion-label position="stacked">Front Photo</ion-label>
 							<div>
-								<ion-button expand="block" (click)="uploadPhoto('photo')">Upload Photo</ion-button>
+								<ion-button expand="block" (click)="uploadPhoto('frontPhoto')">Upload photo for the front of the car</ion-button>
 							</div>
 						</ion-item>
-						@if (!carForm.value.photo) {
-							<span class="span-error">Please upload a photo.</span>
+						@if (!carForm.value.frontPhoto) {
+							<span class="span-error">Please upload photo for the front of the car.</span>
+						}
+
+						<ion-item>
+							<ion-label position="stacked">Back Photo</ion-label>
+							<div>
+								<ion-button expand="block" (click)="uploadPhoto('backPhoto')">Upload photo for the back of the car</ion-button>
+							</div>
+						</ion-item>
+						@if (!carForm.value.backPhoto) {
+						<span class="span-error">Please upload photo for the back of the car.</span>
 						}
 
 						<div class="container-button">

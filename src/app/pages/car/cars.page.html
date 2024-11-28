@@ -12,7 +12,8 @@
 			@for(car of cars; track car) {
 			<ion-col size="12" size-lg="3">
 				<ion-card (click)="onCarDetails(car)">
-					<ion-img [src]="car.photo" alt="{{ car.brand }} {{ car.model }}"></ion-img>
+					<ion-img [src]="car.frontPhoto" alt="{{ car.brand }} {{ car.model }}"></ion-img>
+					<ion-img [src]="car.backPhoto" alt="{{ car.brand }} {{ car.model }}"></ion-img>
 					<ion-card-header>
 						<ion-card-title>Brand : {{ car.brand }} </ion-card-title>
 						<ion-card-title>Model : {{ car.model }} </ion-card-title>

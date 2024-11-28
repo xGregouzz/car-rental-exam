@@ -29,7 +29,8 @@ export class CarCreatePage implements OnInit {
 		brand: new FormControl('', [Validators.required]),
 		model: new FormControl('', [Validators.required]),
 		licensePlate: new FormControl('', [Validators.required, validLicensePlate()]),
-		photo: new FormControl<File | null>(null, [Validators.required]),
+		frontPhoto: new FormControl<File | null>(null, [Validators.required]),
+		backPhoto: new FormControl<File | null>(null, [Validators.required]),
 	});
 
 	constructor(private router: Router,
@@ -40,7 +41,7 @@ export class CarCreatePage implements OnInit {
 	}
 
 	ngOnInit() {
-
+		
 	}
 
 	public onFileChange(event: any, field: string): void {
@@ -52,42 +53,48 @@ export class CarCreatePage implements OnInit {
 		}
 	}
 
-
 	public onSaveCar(): void {
 		if (this.carForm.invalid) {
 			return;
 		}
 
 		this.carService.getCarByLicensePlate(this.carForm.value.licensePlate ?? '').then((existedCar) => {
-		if (existedCar) {
-			this.errorToast("A car with the same license plate is already registered");
-			return;
-		}
-		
-		const formValues = this.carForm.value;
-		const savedCar: ICar = {
-			licensePlate: formValues.licensePlate ?? '',
-			brand: formValues.brand ?? '',
-			model: formValues.model ?? '',
-			photo: '',
-		};
+			if (existedCar) {
+				this.errorToast("A car with the same license plate is already registered");
+				return;
+			}
 
-		const photo = formValues.photo;
-
-		if (photo) {
-			const reader = new FileReader();
-			
-			reader.onloadend = () => {
-				savedCar.photo = reader.result as string;
-				this.carService.saveCar(savedCar).then(() => {
-					this.router.navigate(['/cars']);
-				});
+			const formValues = this.carForm.value;
+			const savedCar: ICar = {
+				licensePlate: formValues.licensePlate ?? '',
+				brand: formValues.brand ?? '',
+				model: formValues.model ?? '',
+				frontPhoto: '',
+				backPhoto: '',
 			};
 
-			reader.readAsDataURL(photo);
-		} else {
-			this.errorToast("Please upload a photo.");
-		}
+			const { frontPhoto, backPhoto } = formValues;
+
+			if (frontPhoto && backPhoto) {
+				const frontReader = new FileReader();
+				const backReader = new FileReader();
+
+				frontReader.onloadend = () => {
+					savedCar.frontPhoto = frontReader.result as string;
+
+					backReader.onloadend = () => {
+						savedCar.backPhoto = backReader.result as string;
+
+						this.carService.saveCar(savedCar).then(() => {
+							this.router.navigate(['/cars']);
+						});
+					};
+					backReader.readAsDataURL(backPhoto);
+				};
+				frontReader.readAsDataURL(frontPhoto);
+			} else {
+				this.errorToast("Please upload photos.");
+			}
 		});
 	}
 
@@ -105,7 +112,6 @@ export class CarCreatePage implements OnInit {
 			});
 	}
 
-
 	private async errorToast(errorMessage: string): Promise<void> {
 		const toast = await this.toastController.create({
 			message: errorMessage,
@@ -121,7 +127,6 @@ export class CarCreatePage implements OnInit {
 		});
 		await toast.present();
 	}
-
 
 	public uploadPhoto(field: string): void {
 		const input = document.createElement('input');

@@ -36,7 +36,8 @@ export class CarService {
 				licensePlate: car.licensePlate,
 				brand: car.brand,
 				model: car.model,
-				photo: car.photo,
+				frontPhoto: car.frontPhoto,
+				backPhoto: car.backPhoto,
 			});
 
 			console.log(`Car with license plate ${car.licensePlate} saved successfully!`);
