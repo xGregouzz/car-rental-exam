@@ -1,0 +1,82 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Create Car</ion-title>
+		<ion-icon class="home-outline" name="home-outline" (click)="onAllCars()"></ion-icon>
+		<ion-icon slot="end" name="log-out-outline" (click)="onLogout()"></ion-icon>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-grid>
+		<ion-row>
+			<ion-col size="12" size-md="8" size-lg="5">
+				<div class="form-container">
+					<form [formGroup]="carForm" (ngSubmit)="onSaveCar()">
+						<ion-item>
+							<ion-input 
+								label="Brand" 
+								labelPlacement="stacked" 
+								placeholder="Ferrari"
+								formControlName="brand"
+							>
+							</ion-input>
+						</ion-item>
+						@if (carForm.get('brand')?.dirty) {
+							@if (carForm.get('brand')?.errors?.['required']) {
+								<span class="span-error">Brand is required</span>
+							}
+						}
+
+						<ion-item>
+							<ion-input 
+								label="Model" 
+								labelPlacement="stacked" 
+								placeholder="SF90"
+								formControlName="model"
+								>
+							</ion-input>
+						</ion-item>
+						@if (carForm.get('model')?.dirty) {
+							@if (carForm.get('model')?.errors?.['required']) {
+								<span class="span-error">Model is required</span>
+							}
+						}
+
+						<ion-item>
+							<ion-input 
+								label="License Plate" 
+								labelPlacement="stacked" 
+								placeholder="AB-123-BA"
+								formControlName="licensePlate"
+								>
+							</ion-input>
+						</ion-item>
+						@if (carForm.get('licensePlate')?.dirty) {
+							@if (carForm.get('licensePlate')?.errors?.['required']) {
+							<span class="span-error">License plate is required</span>
+							}
+
+							@if (carForm.get('licensePlate')?.errors?.['invalidLicensePlate']) {
+								<span class="span-error">License plate is not valid</span>
+							}
+						}
+
+						<ion-item>
+							<ion-label position="stacked">Photo</ion-label>
+							<div>
+								<ion-button expand="block" (click)="uploadPhoto('photo')">Upload Photo</ion-button>
+							</div>
+						</ion-item>
+						@if (!carForm.value.photo) {
+							<span class="span-error">Please upload a photo.</span>
+						}
+
+						<div class="container-button">
+							<ion-button expand="full" type="submit" [disabled]="carForm.invalid">Save Car</ion-button>
+						</div>
+					</form>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

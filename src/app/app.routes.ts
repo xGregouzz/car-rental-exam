@@ -20,6 +20,14 @@ export const routes: Routes = [
 			{
 				path: '',
 				loadComponent: () => import('./pages/car/cars.page').then(m => m.CarsPage)
+			},
+      {
+				path: 'create',
+				loadComponent: () => import('./pages/car/car-create/car-create.page').then(m => m.CarCreatePage)
+			},
+      {
+				path: 'detail/:licensePlate',
+				loadComponent: () => import('./pages/car/car-detail/car-detail.page').then(m => m.CarDetailPage)
 			}
 		]
 	},

@@ -42,11 +42,11 @@ export class CarsPage implements OnInit {
 	}
 
 	public onCreateCar(): void {
-		this.router.navigate(['/car/create']);
+		this.router.navigate(['/cars/create']);
 	}
 
 	public onCarDetails(car: ICar): void {
-		this.router.navigate([`/car/detail/${car.licensePlate}`]);
+		this.router.navigate([`/cars/detail/${car.licensePlate}`]);
 	}
 
 	public onLogout(): void {

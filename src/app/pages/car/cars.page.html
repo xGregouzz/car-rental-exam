@@ -10,11 +10,13 @@
 	<ion-grid>
 		<ion-row>
 			@for(car of cars; track car) {
-			<ion-col size="12" size-lg="2">
+			<ion-col size="12" size-lg="3">
 				<ion-card (click)="onCarDetails(car)">
 					<ion-img [src]="car.photo" alt="{{ car.brand }} {{ car.model }}"></ion-img>
 					<ion-card-header>
-						<ion-card-title>{{ car.brand }} {{ car.model }}</ion-card-title>
+						<ion-card-title>Brand : {{ car.brand }} </ion-card-title>
+						<ion-card-title>Model : {{ car.model }} </ion-card-title>
+						<ion-card-title>License Plate : {{ car.licensePlate }}</ion-card-title>
 					</ion-card-header>
 				</ion-card>
 			</ion-col>

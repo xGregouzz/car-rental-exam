@@ -54,3 +54,19 @@ export function validConfirmPassword(): ValidatorFn {
     return null;
   };
 }
+
+export function validLicensePlate(): ValidatorFn {
+  const licensePlatePattern = /^[A-Z]{2}-\d{3}-[A-Z]{2}$/;
+  return (control: AbstractControl): ValidationErrors | null => {
+    const licensePlateNumber = control.value;
+
+    if (licensePlateNumber) {
+      if (!licensePlatePattern.test(licensePlateNumber)) {
+        return { invalidLicensePlate: true };
+      }
+    }
+
+    return null;
+  };
+}
+
