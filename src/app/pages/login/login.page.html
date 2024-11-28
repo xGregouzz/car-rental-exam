@@ -21,7 +21,7 @@
           <span class="span-error">Email is required</span>
         }
 
-        @if (loginForm.get('email')?.errors?.['invalidEmail']) {
+        @else if (loginForm.get('email')?.errors?.['invalidEmail']) {
           <span class="span-error">Email invalid.</span>
         }
       }
@@ -42,7 +42,7 @@
           <span class="span-error">Password is required</span>
         }
 
-        @if (loginForm.get('password')?.errors?.['invalidPassword']) {
+        @else if (loginForm.get('password')?.errors?.['invalidPassword']) {
           <span class="span-error">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character</span>
         }
       }

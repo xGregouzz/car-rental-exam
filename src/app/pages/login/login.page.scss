@@ -1,23 +1,72 @@
-.login {
+ion-header {
+  background-color: #3880ff;
+  color: white;
+  padding-bottom: 8px;
+}
 
-  form:last-child > ion-item > ion-input {
-    width: 90%;
-  }
+ion-toolbar {
+  --background: #3880ff;
+  --color: white;
+}
 
-  #icon-eye {
-    display: block;
-    position: absolute;
-    right: 15px;
-    top: 26px;
-  }
+ion-item {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
 
-  .container-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+ion-input {
+  width: 100%;
+}
 
-    ion-button {
-      width: 80%;
-    }
-  }
+.span-error {
+  color: #d9534f;
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+#icon-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #3880ff;
+  font-size: 20px;
+  z-index: 10;
+}
+
+.container-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  width: 100%;
+}
+
+ion-button {
+  width: 100%;
+  max-width: 350px;
+  padding: 14px;
+  --background: #3880ff;
+  --color: white;
+  font-size: 16px;
+  border-radius: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.register-link a {
+  color: #3880ff;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }

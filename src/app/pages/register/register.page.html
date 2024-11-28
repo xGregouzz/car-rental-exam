@@ -16,12 +16,11 @@
         >
         </ion-input>
       </ion-item>
-      @if (registerForm.get('fullName')?.dirty) {
+      @if (registerForm.get('fullName')?.dirty && registerForm.get('fullName')?.touched) {
         @if (registerForm.get('fullName')?.errors?.['required']) {
           <span class="span-error">Fullname is required</span>
         }
-
-        @if (registerForm.get('fullName')?.errors?.['invalidFullName']) {
+        @else if (registerForm.get('fullName')?.errors?.['invalidFullName']) {
           <span class="span-error">Fullname invalid.</span>
         }
       }
@@ -39,8 +38,7 @@
         @if (registerForm.get('email')?.errors?.['required']) {
           <span class="span-error">Email is required</span>
         }
-
-        @if (registerForm.get('email')?.errors?.['invalidEmail']) {
+        @else if (registerForm.get('email')?.errors?.['invalidEmail']) {
           <span class="span-error">Email invalid.</span>
         }
       }
@@ -59,7 +57,7 @@
           <span class="span-error">Phonenumber is required</span>
         }
 
-        @if (registerForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']) {
+        @else if (registerForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']) {
           <span class="span-error">Phonenumber invalid</span>
         }
       }
@@ -80,7 +78,7 @@
           <span class="span-error">Password is required</span>
         }
 
-        @if (registerForm.get('password')?.errors?.['invalidPassword']) {
+        @else if (registerForm.get('password')?.errors?.['invalidPassword']) {
           <span class="span-error">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character</span>
         }
       }
@@ -102,7 +100,7 @@
           <span class="span-error">Confirm your password</span>
         }
 
-        @if (registerForm.get('confirmPassword')?.errors?.['invalidConfirmPassword']) {
+        @else if (registerForm.get('confirmPassword')?.errors?.['invalidConfirmPassword']) {
           <span class="span-error">Password is not the same</span>
         }
       }
