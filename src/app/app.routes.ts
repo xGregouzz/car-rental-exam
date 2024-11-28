@@ -13,19 +13,5 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
-  },
-  {
-    path: 'contact',
-    children: [
-      {
-        path: '',
-        loadComponent: () => import('./contact/contact.page').then( m => m.ContactPage)
-      },
-      {
-        path: 'new',
-        loadComponent: () => import('./contact/new-contact/new-contact.page').then( m => m.NewContactPage)
-      }
-    ]
-
   }
 ];
