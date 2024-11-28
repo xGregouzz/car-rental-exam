@@ -18,11 +18,11 @@
       </ion-item>
       @if (loginForm.get('email')?.dirty) {
         @if (loginForm.get('email')?.errors?.['required']) {
-          <span class="span-error">This field is required</span>
+          <span class="span-error">Email is required</span>
         }
 
-        @if (loginForm.get('email')?.errors?.['email']) {
-          <span class="span-error">Your e-mail is invalid.</span>
+        @if (loginForm.get('email')?.errors?.['invalidEmail']) {
+          <span class="span-error">Email invalid.</span>
         }
       }
 
@@ -39,11 +39,11 @@
       </ion-item>
       @if (loginForm.get('password')?.dirty) {
         @if (loginForm.get('password')?.errors?.['required']) {
-          <span class="span-error">This field is required</span>
+          <span class="span-error">Password is required</span>
         }
 
-        @if (loginForm.get('password')?.errors?.['minlength']) {
-          <span class="span-error">Your password should be strong with at least 08 characters.</span>
+        @if (loginForm.get('password')?.errors?.['invalidPassword']) {
+          <span class="span-error">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character</span>
         }
       }
 
@@ -51,6 +51,10 @@
         <ion-button size="medium" [disabled]="loginForm.invalid" (click)="onSignIn()">
           Sign Up
         </ion-button>
+      </div>
+
+      <div class="register-link">
+        <a (click)="navigateToRegister()">Don't have an account? Register here</a>
       </div>
     </form>
   </div>

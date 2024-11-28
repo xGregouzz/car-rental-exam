@@ -4,8 +4,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { eyeOffOutline, eyeOutline } from "ionicons/icons";
-import { AuthenticationService, IUser } from "../core/services/authentication/authentication.service";
+import { AuthenticationService, IUser } from "../../core/services/authentication/authentication.service";
 import { Router } from "@angular/router";
+import { ToastController } from '@ionic/angular/standalone';
+import { validEmail, validPassword } from '../../core/validators/validators';
 
 @Component({
   selector: 'app-login',
@@ -21,13 +23,14 @@ import { Router } from "@angular/router";
 })
 export class LoginPage implements OnInit {
   public loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    email: new FormControl('', [Validators.required, validEmail]),
+    password: new FormControl('', [Validators.required, validPassword]),
   });
   public passwordType = 'password';
   public passwordIcon = 'eye-outline';
 
   constructor(private authenticationService: AuthenticationService,
+              private toastController: ToastController,
               private router: Router) {
     addIcons({eyeOutline, eyeOffOutline});
   }
@@ -48,10 +51,39 @@ export class LoginPage implements OnInit {
   public onSignIn(): void {
     this.authenticationService.signInWithEmailAndPassword(this.loginForm.value as unknown as Partial<IUser>)
       .then(() => {
-        this.router.navigate(['contact']);
+        this.router.navigate(['cars']);
     }).catch((error) => {
-      console.log(error);
+      const errorMessage = this.getErrorMessage(error.code);
+      this.errorToast(errorMessage);
     });
   }
 
+  private getErrorMessage(errorCode: string): string {
+		switch (errorCode) {
+			case 'auth/invalid-credential':
+				return 'Invalid email or password';
+			default:
+				return 'An error occurred. Please try again later.';
+		}
+	}
+
+	private async errorToast(errorMessage: string): Promise<void> {
+		const toast = await this.toastController.create({
+			message: errorMessage,
+			duration: 2000,
+			position: 'top',
+			color: 'danger',
+			buttons: [
+				{
+					text: 'Dismiss',
+					role: 'cancel'
+				}
+			]
+		});
+		await toast.present();
+	}
+
+	public navigateToRegister(): void {
+		this.router.navigate(['/register']);
+	}
 }

@@ -1,0 +1,121 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="register">
+  <div>
+    <form [formGroup]="registerForm">
+      <ion-item>
+        <ion-input
+          label="Fullname"
+          labelPlacement="stacked"
+          placeholder="John Doe"
+          formControlName="fullName"
+        >
+        </ion-input>
+      </ion-item>
+      @if (registerForm.get('fullName')?.dirty) {
+        @if (registerForm.get('fullName')?.errors?.['required']) {
+          <span class="span-error">Fullname is required</span>
+        }
+
+        @if (registerForm.get('fullName')?.errors?.['invalidFullName']) {
+          <span class="span-error">Fullname invalid.</span>
+        }
+      }
+
+      <ion-item>
+        <ion-input
+          label="E-mail"
+          labelPlacement="stacked"
+          placeholder="email@example.com"
+          formControlName="email"
+        >
+        </ion-input>
+      </ion-item>
+      @if (registerForm.get('email')?.dirty) {
+        @if (registerForm.get('email')?.errors?.['required']) {
+          <span class="span-error">Email is required</span>
+        }
+
+        @if (registerForm.get('email')?.errors?.['invalidEmail']) {
+          <span class="span-error">Email invalid.</span>
+        }
+      }
+
+      <ion-item>
+        <ion-input 
+          label="Phone Number" 
+          labelPlacement="stacked" 
+          placeholder="0612345678" 
+          formControlName="phoneNumber"
+        >
+        </ion-input>
+      </ion-item>
+      @if (registerForm.get('phoneNumber')?.dirty) {
+        @if (registerForm.get('phoneNumber')?.errors?.['required']) {
+          <span class="span-error">Phonenumber is required</span>
+        }
+
+        @if (registerForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']) {
+          <span class="span-error">Phonenumber invalid</span>
+        }
+      }
+
+      <ion-item>
+        <ion-input
+          label="Password"
+          labelPlacement="stacked"
+          [type]="passwordType"
+          placeholder="***********"
+          formControlName="password"
+        >
+        </ion-input>
+        <ion-icon id="icon-eye" [name]="passwordIcon" (click)="onToggleShowPassword()"></ion-icon>
+      </ion-item>
+      @if (registerForm.get('password')?.dirty) {
+        @if (registerForm.get('password')?.errors?.['required']) {
+          <span class="span-error">Password is required</span>
+        }
+
+        @if (registerForm.get('password')?.errors?.['invalidPassword']) {
+          <span class="span-error">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character</span>
+        }
+      }
+
+    
+      <ion-item>
+        <ion-input 
+          label="Confirm Password" 
+          labelPlacement="stacked" 
+          [type]="confirmPasswordType" 
+          placeholder="***********"
+          formControlName="confirmPassword"
+        >
+        </ion-input>
+        <ion-icon id="icon-eye" [name]="confirmPasswordIcon" (click)="onToggleShowConfirmPassword()"></ion-icon>
+      </ion-item>
+      @if (registerForm.get('confirmPassword')?.dirty) {
+        @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+          <span class="span-error">Confirm your password</span>
+        }
+
+        @if (registerForm.get('confirmPassword')?.errors?.['invalidConfirmPassword']) {
+          <span class="span-error">Password is not the same</span>
+        }
+      }
+
+      <div class="container-button">
+        <ion-button size="medium" [disabled]="registerForm.invalid" (click)="onSignUp()">
+          Sign Up
+        </ion-button>
+      </div>
+
+      <div class="login-link">
+        <a (click)="navigateToLogin()">Already have an account? Login here</a>
+      </div>
+    </form>
+  </div>
+</ion-content>
