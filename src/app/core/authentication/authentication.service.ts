@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, UserCredential } from "firebase/auth";
+import { Auth, signOut, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { getDatabase, ref, set } from 'firebase/database';
-
-export interface IUser {
-  fullName: string,
-  email: string,
-  password: string
-}
+import { IUser } from "../../models/user.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +33,17 @@ export class AuthenticationService {
   public signInWithEmailAndPassword(user: Partial<IUser>): Promise<UserCredential> {
     return signInWithEmailAndPassword(getAuth(), user.email as string, user.password as string);
   }
+
+  public logout(): Promise<boolean | unknown> {
+		return new Promise((resolve, reject) => {
+			signOut(getAuth())
+				.then(() => {
+					resolve(true);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	}
 }
+

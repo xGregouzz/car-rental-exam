@@ -4,7 +4,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { eyeOffOutline, eyeOutline } from "ionicons/icons";
-import { AuthenticationService, IUser } from "../../core/services/authentication/authentication.service";
+import { AuthenticationService} from "../../core/authentication/authentication.service";
+import { IUser } from "../../models/user.interface";
 import { Router } from "@angular/router";
 import { ToastController } from '@ionic/angular/standalone';
 import { validFullname, validEmail, validPhonenumber, validPassword, validConfirmPassword } from '../../core/validators/validators';
@@ -88,7 +89,7 @@ export class RegisterPage implements OnInit {
 			case 'auth/email-already-in-use':
 				return 'An account with this email is already created.';
 			default:
-				return 'An error occurred. Please try again later.';
+				return 'Server error. Please try again later.';
 		}
 	}
 

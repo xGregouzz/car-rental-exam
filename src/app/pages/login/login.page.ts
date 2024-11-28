@@ -4,7 +4,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from "@ionic/angular";
 import { addIcons } from "ionicons";
 import { eyeOffOutline, eyeOutline } from "ionicons/icons";
-import { AuthenticationService, IUser } from "../../core/services/authentication/authentication.service";
+import { AuthenticationService } from "../../core/authentication/authentication.service";
+import { IUser } from "../../models/user.interface";
 import { Router } from "@angular/router";
 import { ToastController } from '@ionic/angular/standalone';
 import { validEmail, validPassword } from '../../core/validators/validators';
@@ -63,7 +64,7 @@ export class LoginPage implements OnInit {
 			case 'auth/invalid-credential':
 				return 'Invalid email or password';
 			default:
-				return 'An error occurred. Please try again later.';
+				return 'Server error. Please try again later.';
 		}
 	}
 
