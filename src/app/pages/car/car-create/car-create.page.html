@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-title>Create Car</ion-title>
-		<ion-icon class="home-outline" name="home-outline" (click)="onAllCars()"></ion-icon>
+		<ion-icon slot="end" name="home-outline" (click)="onAllCars()"></ion-icon>
 		<ion-icon slot="end" name="log-out-outline" (click)="onLogout()"></ion-icon>
 	</ion-toolbar>
 </ion-header>
@@ -64,7 +64,7 @@
 						<ion-item>
 							<ion-label position="stacked">Front Photo</ion-label>
 							<div>
-								<ion-button expand="block" (click)="uploadPhoto('frontPhoto')">Upload photo for the front of the car</ion-button>
+								<ion-button expand="block" (click)="uploadPhoto('frontPhoto')">Upload photo</ion-button>
 							</div>
 						</ion-item>
 						@if (!carForm.value.frontPhoto) {
@@ -74,7 +74,7 @@
 						<ion-item>
 							<ion-label position="stacked">Back Photo</ion-label>
 							<div>
-								<ion-button expand="block" (click)="uploadPhoto('backPhoto')">Upload photo for the back of the car</ion-button>
+								<ion-button expand="block" (click)="uploadPhoto('backPhoto')">Upload photo</ion-button>
 							</div>
 						</ion-item>
 						@if (!carForm.value.backPhoto) {

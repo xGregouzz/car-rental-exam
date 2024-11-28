@@ -14,7 +14,7 @@
 				<ion-card (click)="onCarDetails(car)">
 					<ion-img [src]="car.frontPhoto" alt="{{ car.brand }} {{ car.model }}"></ion-img>
 					<ion-img [src]="car.backPhoto" alt="{{ car.brand }} {{ car.model }}"></ion-img>
-					<ion-card-header>
+					<ion-card-header class="card-info">
 						<ion-card-title>Brand : {{ car.brand }} </ion-card-title>
 						<ion-card-title>Model : {{ car.model }} </ion-card-title>
 						<ion-card-title>License Plate : {{ car.licensePlate }}</ion-card-title>
