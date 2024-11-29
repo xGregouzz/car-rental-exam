@@ -44,15 +44,6 @@ export class CarCreatePage implements OnInit {
 		
 	}
 
-	public onFileChange(event: any, field: string): void {
-		const file = event.target.files[0];
-		if (file) {
-			this.carForm.patchValue({
-				[field]: file,
-			});
-		}
-	}
-
 	public onSaveCar(): void {
 		if (this.carForm.invalid) {
 			return;
@@ -83,10 +74,9 @@ export class CarCreatePage implements OnInit {
 					savedCar.frontPhoto = frontReader.result as string;
 
 					backReader.onloadend = () => {
-						savedCar.backPhoto = backReader.result as string;
-
+						savedCar.backPhoto = backReader.result as string; 
 						this.carService.saveCar(savedCar).then(() => {
-							this.router.navigate(['/cars']);
+							this.router.navigate(['/cars'], { state: { reload: true } });
 						});
 					};
 					backReader.readAsDataURL(backPhoto);
@@ -99,7 +89,7 @@ export class CarCreatePage implements OnInit {
 	}
 
 	public onAllCars(): void {
-		this.router.navigate([`/cars`]);
+		this.router.navigate([`/cars`], { state: { reload: true } });
 	}
 
 	public onLogout(): void {

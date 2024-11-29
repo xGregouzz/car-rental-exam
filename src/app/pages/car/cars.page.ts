@@ -34,12 +34,15 @@ export class CarsPage implements OnInit {
 	}
 
 	ngOnInit() {
-		this.carService.getAllCars().then((cars: ICar[]) => {
-			this.cars = cars;
-		}).catch(() => {
-			this.errorToast("Server error. Please try again later.");
-		});
 	}
+
+	ionViewWillEnter() {
+    this.carService.getAllCars().then((cars: ICar[]) => {
+        this.cars = cars;
+    }).catch(() => {
+        this.errorToast("Server error. Please try again later.");
+    });
+}
 
 	public onCreateCar(): void {
 		this.router.navigate(['/cars/create']);
