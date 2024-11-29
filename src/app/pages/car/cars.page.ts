@@ -66,7 +66,7 @@ export class CarsPage implements OnInit {
 	private async errorToast(errorMessage: string): Promise<void> {
 		const toast = await this.toastController.create({
 			message: errorMessage,
-			duration: 2000,
+			duration: 3000,
 			position: 'top',
 			color: 'danger',
 			buttons: [
