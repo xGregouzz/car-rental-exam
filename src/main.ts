@@ -10,13 +10,13 @@ import { importProvidersFrom } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxlL_denhmmATqpbSttv00gQ9QySotL3o",
-  authDomain: "car-rental-exam-63838.firebaseapp.com",
-  databaseURL: "https://car-rental-exam-63838-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "car-rental-exam-63838",
-  storageBucket: "car-rental-exam-63838.firebasestorage.app",
-  messagingSenderId: "948254018289",
-  appId: "1:948254018289:web:06deb517375b2672abb750"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 initializeApp(firebaseConfig);
